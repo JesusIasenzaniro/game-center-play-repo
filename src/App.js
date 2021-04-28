@@ -1,16 +1,18 @@
-import Cards from './components/CardsComponents';
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
+import Home from './pages/Home';
+import MemoryPage from './pages/MemoryPage';
 import './App.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 function App() {
     return (
-        <Container maxWidth='md'>
-            <Grid container alignItems='center' className='app'>
-                <Grid container justify='space-around'>
-                    <Cards />
-                </Grid>
-            </Grid>
-        </Container>
+        <div className='app'>
+            <Router>
+                <Switch>
+                    <Route exact path='/' component={Home} />
+                    <Route exact path='/MemoryPage' component={MemoryPage} />
+                </Switch>
+            </Router>
+        </div>
     );
 }
 

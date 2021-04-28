@@ -4,9 +4,10 @@ const initialState = {
     cards: [],
     loading: false,
     error: null,
+    flip: false,
 };
 
-export default function users(state = initialState, action) {
+export default function cards(state = initialState, action) {
     switch (action.type) {
         case type.GET_CARDS_REQUESTED:
             return {
@@ -25,6 +26,12 @@ export default function users(state = initialState, action) {
                 loading: false,
                 error: action.message,
             };
+        case type.GET_CARD_FLIPED:
+            return {
+                ...state,
+                flip: true,
+            };
+
         default:
             return state;
     }

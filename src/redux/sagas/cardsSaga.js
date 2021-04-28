@@ -2,6 +2,7 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 import { card_url as url } from './utils';
 
 const cardName = 'Blue-Eyes';
+
 function getApi() {
     return fetch(`${url}${cardName}`, {
         method: 'GET',
@@ -9,10 +10,7 @@ function getApi() {
             'Content-Type': 'application/json',
         },
     })
-        .then(
-            (response) => response.json()
-            // console.log(response.json())
-        )
+        .then((response) => response.json())
         .catch((error) => {
             throw error;
         });
