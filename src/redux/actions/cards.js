@@ -6,3 +6,10 @@ export function getCards(cards) {
         payload: cards,
     };
 }
+
+export function getFlipCard(cards) {
+    return {
+        type: type.GET_CARD_FLIPED,
+        payload: cards,
+    };
+}

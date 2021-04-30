@@ -1,14 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getCards } from '../redux/actions/cards';
+import { getCards, getFlipCard } from '../redux/actions/cards';
 import OneCard from './OneCardComponent';
 import Loading from '../pages/Loading';
 import Error from '../pages/Error';
 import Grid from '@material-ui/core/Grid';
-// import Container from '@material-ui/core/Container';
-// import Card from '@material-ui/core/Card';
-
-import '../css/Card.css';
+import '../css/MemoryPage.css';
 
 const Cards = () => {
     const dispatch = useDispatch();
@@ -17,19 +14,24 @@ const Cards = () => {
     const error = useSelector((state) => state.cards.error);
     let flip = useSelector((state) => state.cards.flip);
 
-    const sliceCards = cards.slice(0, 6);
+    const sliceCards = cards.slice(0, 9);
     const pairOfCards = [...sliceCards, ...sliceCards];
 
     useEffect(() => {
         dispatch(getCards());
     }, [dispatch]);
 
+    const flipTheCard = () => {
+        dispatch(getFlipCard());
+    };
+
     return (
         <Grid container justify='center'>
             {/* {cards.loading && <Loading />} */}
             {pairOfCards.map((cards, index) => {
                 const { name, card_images } = cards;
-                return <OneCard name={name} images={card_images} key={index} />;
+
+                return <OneCard name={name} images={card_images} key={index} index={index} flip={flip} flipTheCard={flipTheCard} />;
             })}
             {cards.length === 0 && !error && <Loading />}
             {error && !loading && <Error />}

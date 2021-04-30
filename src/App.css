@@ -3,22 +3,10 @@
     padding: 0px;
     box-sizing: border-box;
 }
-
 .app {
     min-height: 100vh;
 }
-
 body {
     font-family: 'Sue Ellen Francisco', cursive;
     background: radial-gradient(#77acf1, #04009a);
-}
-
-.page-title {
-    color: #3edbf0;
-    font-size: 4rem;
-}
-
-.game-info {
-    color: #c0fefc;
-    font-size: 2rem;
 }

@@ -1,11 +1,11 @@
 import React from 'react';
-import Card from '@material-ui/core/Card';
 import backPart from '../assets/backPart.png';
-import '../css/Card.css';
+import '../css/MemoryPage.css';
 
-const OneCard = ({ name, images, flip }) => {
+const OneCard = ({ name, images, flip, flipTheCard }) => {
+    // visible
     return (
-        <div className='card visible'>
+        <div className={`card ${flip ? 'visible' : ''}`} onClick={flipTheCard}>
             <div className='card-back card-face'>
                 <img src={backPart} alt='back-part' />
             </div>
