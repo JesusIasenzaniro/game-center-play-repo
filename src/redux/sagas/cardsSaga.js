@@ -16,17 +16,17 @@ function getApi() {
         });
 }
 
-function* fetchUsers(action) {
+function* fetchListCards(action) {
     try {
-        const cards = yield call(getApi);
-        yield put({ type: 'GET_CARDS_SUCCESS', cards: cards.data });
+        const listCards = yield call(getApi);
+        yield put({ type: 'GET_CARDS_LIST_SUCCESS', listCards: listCards.data });
     } catch (e) {
-        yield put({ type: 'GET_CARDS_FAILED', message: e.message });
+        yield put({ type: 'GET_CARDS_LIST_FAILED', message: e.message });
     }
 }
 
 function* userSaga() {
-    yield takeEvery('GET_CARDS_REQUESTED', fetchUsers);
+    yield takeEvery('GET_CARDS_LIST_REQUESTED', fetchListCards);
 }
 
 export default userSaga;

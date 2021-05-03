@@ -1,15 +1,15 @@
 import * as type from '../types';
 
-export function getCards(cards) {
+export function getCards(listCards) {
     return {
-        type: type.GET_CARDS_REQUESTED,
-        payload: cards,
+        type: type.GET_CARDS_LIST_REQUESTED,
+        payload: listCards,
     };
 }
 
-export function getFlipCard(cards) {
+export function setFlipCard(index) {
     return {
-        type: type.GET_CARD_FLIPED,
-        payload: cards,
+        type: type.SET_FLIP_CARD,
+        payload: index,
     };
 }

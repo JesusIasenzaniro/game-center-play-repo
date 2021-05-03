@@ -2,10 +2,10 @@ import React from 'react';
 import backPart from '../assets/backPart.png';
 import '../css/MemoryPage.css';
 
-const OneCard = ({ name, images, flip, flipTheCard }) => {
+const OneCard = ({ name, images, openCard, handleFlip, index }) => {
     // visible
     return (
-        <div className={`card ${flip ? 'visible' : ''}`} onClick={flipTheCard}>
+        <div className={`card ${openCard ? 'visible' : ''}`} onClick={() => handleFlip(index)}>
             <div className='card-back card-face'>
                 <img src={backPart} alt='back-part' />
             </div>
