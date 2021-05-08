@@ -3,11 +3,16 @@ import * as type from '../types';
 
 const initialState = {
     listCards: [], //generic deck  API (list of cards)
-    board: [], // cards on the board (matrix of cards)
+    cardsInGame: [], // cards on the cardsInGame (matrix of cards)
     flipCards: [], // cards that are open (matrix of booleans)
+    pairOfCards: [],
+    // match: [], // use this to compare two cards and then put then in flipcards if they match
+    firstFlip: null,
+    firstIndex: null,
 };
+//!busy && match.includes(idCard)&&idCard !==firstFlip
 
-export default function Board(state = initialState, action) {
+export default function Cards(state = initialState, action) {
     switch (action.type) {
         case type.GET_CARDS_LIST_REQUESTED:
             return {
@@ -16,16 +21,18 @@ export default function Board(state = initialState, action) {
             };
         case type.GET_CARDS_LIST_SUCCESS:
             const sliceCards = action.listCards.slice(0, 9);
-            const pairOfCards = [...sliceCards, ...sliceCards];
+            let pairOfCards = [...sliceCards, ...sliceCards];
+            let shuffleCards = pairOfCards.sort(() => Math.random() - 0.5);
             let notFlippedCards = [];
-            for (let i = 0; i < pairOfCards.length; i++) {
+            for (let i = 0; i < shuffleCards.length; i++) {
                 notFlippedCards.push(false);
             }
+
             return {
                 ...state,
                 loading: false,
                 listCards: action.listCards,
-                board: pairOfCards,
+                cardsInGame: shuffleCards,
                 flipCards: notFlippedCards,
             };
         case type.GET_CARDS_LIST_FAILED:
@@ -36,11 +43,42 @@ export default function Board(state = initialState, action) {
             };
 
         case type.SET_FLIP_CARD:
-            let flippedCards = state.flipCards;
+            let flippedCards = { ...state.flipCards };
             flippedCards[action.payload] = true;
+
             return {
                 ...state,
                 flipCards: flippedCards,
+            };
+
+        case type.SET_MATCH_CARD:
+            let flipCards = { ...state.flipCards };
+            let firstIndex = { ...state.firstIndex };
+            let firstFlip = { ...state.firstFlip };
+            if (state.firstFlip) {
+                if (state.firstFlip === action.payload.id) {
+                    console.log('match');
+                    firstFlip = null;
+                } else {
+                    console.log('not match');
+
+                    flipCards[state.firstIndex] = false;
+                    flipCards[action.payload.index] = false;
+                    console.log(flipCards, state.firstIndex, action.payload.index);
+
+                    firstFlip = null;
+                    firstIndex = null;
+                }
+            } else {
+                firstFlip = action.payload.id;
+                firstIndex = action.payload.index;
+            }
+
+            return {
+                ...state,
+                flipCards,
+                firstFlip,
+                firstIndex,
             };
 
         default:

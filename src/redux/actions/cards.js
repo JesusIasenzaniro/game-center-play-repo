@@ -13,3 +13,10 @@ export function setFlipCard(index) {
         payload: index,
     };
 }
+
+export function setMatchCard(id, index) {
+    return {
+        type: type.SET_MATCH_CARD,
+        payload: { id, index },
+    };
+}
