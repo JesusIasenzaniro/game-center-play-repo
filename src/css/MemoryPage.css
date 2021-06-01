@@ -1,101 +1,102 @@
 .page-title {
-    color: #3edbf0;
-    font-size: 4rem;
-    text-align: center;
-    margin-bottom: 20px;
+  color: #3edbf0;
+  font-size: 4rem;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .overlay-text {
-    display: none;
-    color: #3edbf0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
+  display: none;
+  color: #3edbf0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
 }
 
 .overlay-text-small {
-    font-size: 0.3em;
+  cursor: pointer;
+  font-size: 0.3em;
 }
 
 .overlay-text.visible {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    animation: overlay-grow 500ms forwards;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  animation: overlay-grow 500ms forwards;
 }
 
 @keyframes overlay-grow {
-    from {
-        background-color: rgba(0, 0, 0, 0);
-        font-size: 0;
-    }
-    to {
-        background-color: rgba(0, 0, 0, 0.8);
-        font-size: 10em;
-    }
+  from {
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 0;
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.8);
+    font-size: 10em;
+  }
 }
 
 .game-info {
-    color: #c0fefc;
-    font-size: 2rem;
-    margin-bottom: 10px;
+  color: #c0fefc;
+  font-size: 2rem;
+  margin-bottom: 10px;
 }
 
 .game-container {
-    perspective: 500px;
+  perspective: 500px;
 }
 
 .card {
-    position: relative;
-    height: 175px;
-    width: 125px;
-    margin: 10px;
-    cursor: pointer;
+  position: relative;
+  height: 175px;
+  width: 125px;
+  margin: 10px;
+  cursor: pointer;
 }
 /* position:absolute to overlap the front and back of the back */
 
 .card-face {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    backface-visibility: hidden;
-    transition: transform 500ms ease-in-out;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+  transition: transform 500ms ease-in-out;
 }
 
 .card.visible .card-back {
-    transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
 }
 
 .card.visible .card-front {
-    transform: rotateY(0);
+  transform: rotateY(0);
 }
 
 .card-back {
-    background-color: black;
-    border-color: white;
+  background-color: black;
+  border-color: white;
 }
 .card-back:hover {
-    border: 3px solid rgb(243, 194, 89);
+  border: 3px solid rgb(243, 194, 89);
 }
 .card-back img {
-    width: 120px;
-    height: 170px;
+  width: 120px;
+  height: 170px;
 }
 
 .card-front {
-    transform: rotateY(180deg);
-    background-color: rgb(5, 47, 83);
+  transform: rotateY(180deg);
+  background-color: rgb(5, 47, 83);
 }
 
 .card-front img {
-    width: 125px;
-    height: 175px;
+  width: 125px;
+  height: 175px;
 }
