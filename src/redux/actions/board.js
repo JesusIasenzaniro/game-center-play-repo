@@ -1,7 +1,14 @@
 import * as type from '../types';
 
 export function getStart() {
-    return {
-        type: type.SET_START_GAME,
-    };
+  return {
+    type: type.SET_START_GAME,
+  };
+}
+
+export function getRemainingTime(timer) {
+  return {
+    type: type.SET_REMAINING_TIME,
+    payload: timer,
+  };
 }
