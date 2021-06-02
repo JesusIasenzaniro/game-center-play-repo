@@ -2,32 +2,41 @@
 import * as type from '../types';
 
 const initialState = {
-  start: true,
-  timeRemaining: '100',
+    start: false,
+    timeRemaining: '100',
+    idInterval: null,
+    victory: false,
 };
 
 export default function Board(state = initialState, action) {
-  switch (action.type) {
-    case type.SET_START_GAME:
-      return {
-        ...state,
-        start: false,
-      };
-    case type.SET_REMAINING_TIME:
-      if (state.start === false) {
-        --state.timeRemaining;
-        if (state.timeRemaining === 0) {
-          clearInterval(action.payload.timer);
+    switch (action.type) {
+        case type.SET_START_GAME:
+            return {
+                ...state,
+                start: true,
+                idInterval: action.payload,
+            };
+        case type.SET_REMAINING_TIME:
+            //you have to always create a copy of the state, in this case is more easy because the type of data, that is a string
+            let tempTiming = state.timeRemaining;
 
-          // the value of this comes from MemoryPage, is the timer
-          //victory comes MemoryPage
-        }
-      }
-      return {
-        ...state,
-      };
+            // const tempState = { ...state };
 
-    default:
-      return state;
-  }
+            if (state.start === true) {
+                --tempTiming;
+                if (tempTiming === 0 && state.idInterval !== null) {
+                    clearInterval(state.idInterval);
+                }
+
+                // the value of this comes from MemoryPage, is the timer
+                //victory comes MemoryPage
+            }
+            return {
+                ...state,
+                timeRemaining: tempTiming,
+            };
+
+        default:
+            return state;
+    }
 }

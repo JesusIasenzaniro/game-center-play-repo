@@ -14,7 +14,9 @@ const Cards = () => {
     const flipCards = useSelector((state) => state.Cards.flipCards);
     const loading = useSelector((state) => state.Cards.loading);
     const error = useSelector((state) => state.Cards.error);
-    // const [, setFlippingCard] = useState();
+    const idInterval = useSelector((state) => state.Board.idInterval);
+
+    console.log(idInterval);
 
     useEffect(() => {
         dispatch(getCards());
@@ -23,7 +25,7 @@ const Cards = () => {
     const handleFlip = (index, id) => {
         dispatch(setFlipCard(index, id));
         setTimeout(() => {
-            dispatch(setMatchCard(id, index));
+            dispatch(setMatchCard(id, index, idInterval));
         }, 800);
     };
 

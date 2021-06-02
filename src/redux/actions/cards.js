@@ -14,9 +14,9 @@ export function setFlipCard(index) {
     };
 }
 
-export function setMatchCard(id, index) {
+export function setMatchCard(id, index, idInterval) {
     return {
         type: type.SET_MATCH_CARD,
-        payload: { id, index },
+        payload: { id, index, idInterval },
     };
 }
