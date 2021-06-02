@@ -6,9 +6,9 @@ export function getStart() {
   };
 }
 
-export function getRemainingTime(timer) {
+export function getRemainingTime(timer, victory) {
   return {
     type: type.SET_REMAINING_TIME,
-    payload: timer,
+    payload: {timer, victory},
   };
 }

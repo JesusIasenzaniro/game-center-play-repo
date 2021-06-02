@@ -3,7 +3,7 @@ import * as type from '../types';
 
 const initialState = {
   start: true,
-  timeRemaining: '2',
+  timeRemaining: '100',
 };
 
 export default function Board(state = initialState, action) {
@@ -17,7 +17,10 @@ export default function Board(state = initialState, action) {
       if (state.start === false) {
         --state.timeRemaining;
         if (state.timeRemaining === 0) {
-          clearInterval(action.payload);
+          clearInterval(action.payload.timer);
+
+          // the value of this comes from MemoryPage, is the timer
+          //victory comes MemoryPage
         }
       }
       return {
